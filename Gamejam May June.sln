@@ -1,6 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gamejam May June", "Gamejam May June.csproj", "{6AAAD94C-C9BC-4F61-A9DD-CE154E83FB01}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gamejam May June", "Gamejam May June.csproj", "{6F5BF5EF-0E80-474D-8535-D2293AAF5293}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,11 +9,11 @@ Global
 	Tools|Any CPU = Tools|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{6AAAD94C-C9BC-4F61-A9DD-CE154E83FB01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6AAAD94C-C9BC-4F61-A9DD-CE154E83FB01}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6AAAD94C-C9BC-4F61-A9DD-CE154E83FB01}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6AAAD94C-C9BC-4F61-A9DD-CE154E83FB01}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6AAAD94C-C9BC-4F61-A9DD-CE154E83FB01}.Tools|Any CPU.ActiveCfg = Tools|Any CPU
-		{6AAAD94C-C9BC-4F61-A9DD-CE154E83FB01}.Tools|Any CPU.Build.0 = Tools|Any CPU
+		{6F5BF5EF-0E80-474D-8535-D2293AAF5293}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F5BF5EF-0E80-474D-8535-D2293AAF5293}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F5BF5EF-0E80-474D-8535-D2293AAF5293}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F5BF5EF-0E80-474D-8535-D2293AAF5293}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F5BF5EF-0E80-474D-8535-D2293AAF5293}.Tools|Any CPU.ActiveCfg = Tools|Any CPU
+		{6F5BF5EF-0E80-474D-8535-D2293AAF5293}.Tools|Any CPU.Build.0 = Tools|Any CPU
 	EndGlobalSection
 EndGlobal

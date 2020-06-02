@@ -78,6 +78,11 @@ player_shoot={
  ]
 }
 
+[display]
+
+window/size/width=1920
+window/size/height=1080
+
 [rendering]
 
 environment/default_environment="res://default_env.tres"

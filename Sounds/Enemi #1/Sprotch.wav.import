@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Sprotch.wav-a3624435360fcddae30d51b2f72277f7.sample"
+
+[deps]
+
+source_file="res://Sounds/Enemi #1/Sprotch.wav"
+dest_files=[ "res://.import/Sprotch.wav-a3624435360fcddae30d51b2f72277f7.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Pukak.wav-668708080e626fd362220f78fea3b350.sample"
+
+[deps]
+
+source_file="res://Sounds/Enemi #1/Pukak.wav"
+dest_files=[ "res://.import/Pukak.wav-668708080e626fd362220f78fea3b350.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

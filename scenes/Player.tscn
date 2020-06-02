@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scripts/Player.cs" type="Script" id=1]
+[ext_resource path="res://assets/Player.png" type="Texture" id=2]
+
+[node name="Player" type="Area2D"]
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+visible = false
+polygon = PoolVector2Array( -85.6433, -60.1523, 55.9989, -60.4964, 55.7467, -34.2094, 77.5378, -28.5896, 96.3469, -28.819, 96.1176, 26.8057, 77.4231, 28.526, 54.9439, 34.6046, 54.1639, 62.589, -85.4138, 63.3918, -87.7076, 21.874, -100.494, -0.725739, -89.139, -19.8867 )
+[connection signal="body_entered" from="." to="." method="OnPlayerBodyEntered"]

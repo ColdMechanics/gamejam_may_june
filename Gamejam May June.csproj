@@ -57,6 +57,7 @@
     <Compile Include="enemies\EnemyPacoPath.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scripts\HUD.cs" />
+    <Compile Include="Scripts\HUD\HealthBar.cs" />
     <Compile Include="Scripts\Player.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

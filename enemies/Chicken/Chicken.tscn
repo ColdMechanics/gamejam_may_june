@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Sprites/Enemi #1.png" type="Texture" id=1]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [  ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[node name="RigidBody2D" type="RigidBody2D"]
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 1 )
+
+[node name="Enemi #1" type="Sprite" parent="AnimatedSprite"]
+position = Vector2( 257, 260 )
+texture = ExtResource( 1 )
+region_rect = Rect2( 327, 25, 101, 104 )

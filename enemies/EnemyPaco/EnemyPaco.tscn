@@ -1,8 +1,8 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://Sprites/ship_paco_tmp1.png" type="Texture" id=1]
-[ext_resource path="res://enemies/EnemyPaco/EnemyPaco.cs" type="Script" id=2]
-
+[ext_resource path="res://assets/EnemyPaco/ship_paco_tmp1.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/EnemyPaco/EnemyPaco.cs" type="Script" id=2]
+[ext_resource path="res://enemies/EnemyPaco/EnemyPacoProjectile.tscn" type="PackedScene" id=3]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -12,12 +12,18 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[node name="RigidBody2D" type="RigidBody2D"]
+[node name="EnemyPaco" type="RigidBody2D"]
+collision_layer = 2
+collision_mask = 2
 gravity_scale = 0.0
 script = ExtResource( 2 )
 __meta__ = {
-"_edit_group_": true
+"_edit_group_": true,
+"_edit_horizontal_guides_": [  ]
 }
+Projectile = ExtResource( 3 )
+ProjectileMinDelay = 2.0
+ProjectileMaxDelay = 5.0
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 0.1, 0.1 )
@@ -27,4 +33,7 @@ frames = SubResource( 1 )
 polygon = PoolVector2Array( -78.8141, 7.48954, -37.3888, -9.25229, 14.7684, -26.4234, 31.2956, -30.0722, 48.4667, -29.643, 58.984, -27.2819, 61.345, -23.6331, 61.989, -13.5451, 73.5795, -13.7597, 73.3648, 2.12357, 61.7743, 1.69429, 60.7011, 8.77737, -79.6726, 8.99201 )
 
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+
+[node name="ShootTimer" type="Timer" parent="."]
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="OnVisibilityNotifier2DScreenExited"]
+[connection signal="timeout" from="ShootTimer" to="." method="OnShootTimerTimeout"]

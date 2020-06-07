@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/WingFlap2.Wav-65cad2acc0e979fd0a5b3b05a1e86898.sample"
+
+[deps]
+
+source_file="res://Sounds/Enemi #1/WingFlap2.Wav"
+dest_files=[ "res://.import/WingFlap2.Wav-65cad2acc0e979fd0a5b3b05a1e86898.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

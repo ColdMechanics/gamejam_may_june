@@ -13,17 +13,29 @@ public class Player : Area2D
 
     [Export]
     public int YBorder = 64;
+
+    [Export]
+    public int MaxHealth = 3;
+
+    [Export]
+    public int BrokenSpriteHealth = 1;
     
     private float _maxX;
     private float _maxY;
+    private int _health;
+
+    private AnimatedSprite _animatedSprite;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
         Vector2 screenSize = GetViewport().GetVisibleRect().Size;
+        this._animatedSprite = GetNode<AnimatedSprite>("AnimatedSprite");
 
         this._maxX = screenSize.x - this.XBorder;
         this._maxY = screenSize.y - this.YBorder;
+
+        this._health = this.MaxHealth;
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -76,5 +88,17 @@ public class Player : Area2D
     private void Shoot()
     {
         GD.Print("Shoot!");
+    }
+
+    private void Damage(int damage)
+    {
+        this._health -= damage;
+        
+        if (this._health > this.BrokenSpriteHealth)
+            this._animatedSprite.Animation = "Healthy";
+        else if (this._health <= 0)
+            this._animatedSprite.Animation = "Dead";
+        else
+            this._animatedSprite.Animation = "Damage";
     }
 }

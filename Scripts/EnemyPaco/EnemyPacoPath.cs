@@ -16,7 +16,21 @@ public class EnemyPacoPath : Node2D
     // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(float delta)
     {
+        if (GetChildren().Count == 1 && _pathFollow2D.GetChildren().Count == 0)
+        {
+            QueueFree();
+            return;
+        }
+        
         var offsetDelta = _enemyPaco.Speed * delta;
         _pathFollow2D.Offset += offsetDelta;
+    }
+
+    public void OnEnemyShootBullet(EnemyPacoProjectile instance, int projectileSpeed)
+    {
+        AddChild(instance);
+
+        instance.Position = new Vector2(_enemyPaco.GlobalPosition.x - 85, _enemyPaco.GlobalPosition.y);
+        instance.LinearVelocity = new Vector2(-projectileSpeed, 0);
     }
 }

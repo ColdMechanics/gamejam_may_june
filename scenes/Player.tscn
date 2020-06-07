@@ -1,18 +1,41 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scripts/Player.cs" type="Script" id=1]
-[ext_resource path="res://assets/Player.png" type="Texture" id=2]
+[ext_resource path="res://assets/Player/player_out.png" type="Texture" id=2]
+[ext_resource path="res://assets/Player/player_damage.png" type="Texture" id=3]
+[ext_resource path="res://assets/Player/player.png" type="Texture" id=4]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 3 ) ],
+"loop": true,
+"name": "Damage",
+"speed": 0.0
+}, {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "Dead",
+"speed": 0.0
+}, {
+"frames": [ ExtResource( 4 ) ],
+"loop": true,
+"name": "Healthy",
+"speed": 0.0
+} ]
 
 [node name="Player" type="Area2D"]
+position = Vector2( 0.184021, 1.47221 )
+collision_mask = 3
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="Sprite" type="Sprite" parent="."]
-texture = ExtResource( 2 )
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 1 )
+animation = "Healthy"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 visible = false
-polygon = PoolVector2Array( -85.6433, -60.1523, 55.9989, -60.4964, 55.7467, -34.2094, 77.5378, -28.5896, 96.3469, -28.819, 96.1176, 26.8057, 77.4231, 28.526, 54.9439, 34.6046, 54.1639, 62.589, -85.4138, 63.3918, -87.7076, 21.874, -100.494, -0.725739, -89.139, -19.8867 )
+polygon = PoolVector2Array( -66.6744, -42.2349, -56.9684, -36.4113, -28.518, -34.6946, -19.115, -28.97, 82.7982, -32.5289, 92.5042, -25.4111, 83.1217, 17.9424, 69.2098, 42.8545, 57.9742, 42.0443, -40.1447, 17.6189, -44.1603, 0.454403, -63.1156, -5.35205, -91.91, -35.1172 )
 [connection signal="body_entered" from="." to="." method="OnPlayerBodyEntered"]

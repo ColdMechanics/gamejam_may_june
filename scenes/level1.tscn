@@ -29,7 +29,7 @@ Speed = 800
 [node name="HUD" parent="Game" instance=ExtResource( 2 )]
 
 [node name="EnemyPacoTimer" type="Timer" parent="Game"]
-wait_time = 20.0
+wait_time = 10.0
 autostart = true
 
 [node name="EnemyPacoSpawnTimer" type="Timer" parent="Game"]

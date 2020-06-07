@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://enemies/EnemyPaco/EnemyPaco.tscn" type="PackedScene" id=1]
-[ext_resource path="res://enemies/EnemyPaco/EnemyPacoPath.cs" type="Script" id=2]
+[ext_resource path="res://Scripts/EnemyPaco/EnemyPacoPath.cs" type="Script" id=2]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
@@ -24,3 +24,5 @@ loop = false
 [node name="Enemy" parent="Path2D/PathFollow2D" instance=ExtResource( 1 )]
 rotation = 3.14159
 Speed = 500
+ProjectileSpeed = 650
+[connection signal="ShootBullet" from="Path2D/PathFollow2D/Enemy" to="." method="OnEnemyShootBullet"]

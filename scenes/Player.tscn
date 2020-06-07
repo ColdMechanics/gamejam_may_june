@@ -12,20 +12,23 @@ animations = [ {
 "name": "Damage",
 "speed": 0.0
 }, {
-"frames": [ ExtResource( 2 ) ],
-"loop": true,
-"name": "Dead",
-"speed": 0.0
-}, {
 "frames": [ ExtResource( 4 ) ],
 "loop": true,
 "name": "Healthy",
 "speed": 0.0
+}, {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "Dead",
+"speed": 0.0
 } ]
 
-[node name="Player" type="Area2D"]
+[node name="Player" type="Area2D" groups=[
+"Player",
+]]
 position = Vector2( 0.184021, 1.47221 )
 collision_mask = 7
+gravity = 0.0
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true
@@ -36,6 +39,6 @@ frames = SubResource( 1 )
 animation = "Healthy"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-visible = false
+show_behind_parent = true
 polygon = PoolVector2Array( -66.6744, -42.2349, -56.9684, -36.4113, -28.518, -34.6946, -19.115, -28.97, 82.7982, -32.5289, 92.5042, -25.4111, 83.1217, 17.9424, 69.2098, 42.8545, 57.9742, 42.0443, -40.1447, 17.6189, -44.1603, 0.454403, -63.1156, -5.35205, -91.91, -35.1172 )
 [connection signal="body_entered" from="." to="." method="OnPlayerBodyEntered"]

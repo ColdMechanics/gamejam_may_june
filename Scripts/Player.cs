@@ -72,10 +72,10 @@ public class Player : Area2D
         {
             velocity = velocity.Normalized() * this.Speed * delta;
 
-            this.Position += velocity;
+            Vector2 nextPosition = this.Position + velocity;
             this.Position = new Vector2(
-                x: Mathf.Clamp(this.Position.x, this.XBorder, this._maxX),
-                y: Mathf.Clamp(this.Position.y, this.YBorder, this._maxY)
+                x: Mathf.Clamp(nextPosition.x, this.XBorder, this._maxX),
+                y: Mathf.Clamp(nextPosition.y, this.YBorder, this._maxY)
             );
         }
     }

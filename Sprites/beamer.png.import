@@ -2,11 +2,16 @@
 
 importer="texture"
 type="StreamTexture"
-valid=false
+path="res://.import/beamer.png-80ecf2300b2af3076fbae80427b3182f.stex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
-source_file="res://assets/EnemyPaco/projectile.png"
+source_file="res://Sprites/beamer.png"
+dest_files=[ "res://.import/beamer.png-80ecf2300b2af3076fbae80427b3182f.stex" ]
+
 [params]
 
 compress/mode=0

@@ -99,6 +99,9 @@ tracks/1/keys = {
 
 [node name="RigidBody2D" type="RigidBody2D"]
 mode = 3
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
@@ -113,8 +116,8 @@ anims/missile = SubResource( 4 )
 texture = ExtResource( 1 )
 vframes = 2
 hframes = 3
-frame = 3
+frame = 2
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource( 5 )
+stream = ExtResource( 3 )
 area_mask = 0

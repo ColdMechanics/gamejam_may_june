@@ -57,6 +57,9 @@
     <Compile Include="Scripts\EnemyPaco\EnemyPaco.cs" />
     <Compile Include="Scripts\EnemyPaco\EnemyPacoPath.cs" />
     <Compile Include="Scripts\EnemyPaco\EnemyPacoProjectile.cs" />
+    <Compile Include="Scripts\Ennemies\Beamer.cs" />
+    <Compile Include="Scripts\Ennemies\Boss.cs" />
+    <Compile Include="Scripts\Ennemies\EnnemyBase.cs" />
     <Compile Include="Scripts\HUD.cs" />
     <Compile Include="Scripts\HUD\HealthBar.cs" />
     <Compile Include="Scripts\Level1.cs" />

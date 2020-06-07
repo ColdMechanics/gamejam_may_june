@@ -18,8 +18,17 @@ public class EnemyPaco : RigidBody2D
     [Export]
     public float ProjectileMaxDelay = 10;
 
+    [Export]
+    public int DerpChance = 10;
+
     [Signal]
-    public delegate void ShootBullet(EnemyPacoProjectile instance, int projectileSpeed);
+    public delegate void ShootBullet(EnemyPacoProjectile instance, int projectileSpeed, bool isDerp);
+
+    private AudioStreamPlayer _shootSound;
+    
+    private AudioStreamPlayer _deathSound;
+
+    private AnimatedSprite _animation;
     
     private Timer _shootTimer;
 
@@ -30,10 +39,13 @@ public class EnemyPaco : RigidBody2D
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
+        _animation = GetNode<AnimatedSprite>("Animation");
+        _deathSound = GetNode<AudioStreamPlayer>("DeathSound");
+        _shootSound = GetNode<AudioStreamPlayer>("ShootSound");
         _shootTimer = GetNode<Timer>("ShootTimer");
         SetShootTimerDuration();
 
-        _isDerp = _random.Next(0, 10) == 0;
+        _isDerp = _random.Next(0, 100) < DerpChance;
     }
     
     public void OnVisibilityNotifier2DScreenExited()
@@ -44,9 +56,25 @@ public class EnemyPaco : RigidBody2D
     public void OnShootTimerTimeout()
     {
         var projectileInstance = (EnemyPacoProjectile) Projectile.Instance();
-        EmitSignal("ShootBullet", projectileInstance, ProjectileSpeed);
+        EmitSignal("ShootBullet", projectileInstance, ProjectileSpeed, _isDerp);
+        _shootSound.Play();
         
         SetShootTimerDuration();
+    }
+
+    public void OnEnemyPacoBodyEntered()
+    {
+        _shootTimer.Stop();
+        _animation.Play("Death");
+        _deathSound.Play();
+    }
+
+    public void OnAnimatedSpriteAnimationFinished()
+    {
+        if (_animation.Animation == "Death")
+        {
+            QueueFree();
+        }
     }
 
     private void SetShootTimerDuration()

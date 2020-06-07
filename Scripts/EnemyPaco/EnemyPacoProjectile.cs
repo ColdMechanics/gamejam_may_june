@@ -8,8 +8,4 @@ public class EnemyPacoProjectile : RigidBody2D
     {
         QueueFree();
     }
-
-    public override void _Process(float delta)
-    {
-    }
 }

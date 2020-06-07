@@ -26,8 +26,15 @@ public class EnemyPacoPath : Node2D
         _pathFollow2D.Offset += offsetDelta;
     }
 
-    public void OnEnemyShootBullet(EnemyPacoProjectile instance, int projectileSpeed)
+    public void OnEnemyShootBullet(EnemyPacoProjectile instance, int projectileSpeed, bool isDerp)
     {
+        if (isDerp)
+        {
+            projectileSpeed /= 2;
+            instance.GravityScale = 15;
+            instance.AngularVelocity = -3;
+        }
+        
         AddChild(instance);
 
         instance.Position = new Vector2(_enemyPaco.GlobalPosition.x - 85, _enemyPaco.GlobalPosition.y);

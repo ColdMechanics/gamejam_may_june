@@ -16,6 +16,7 @@ radius = 2.35079
 height = 9.12587
 
 [node name="Projectile" type="RigidBody2D"]
+collision_layer = 4
 gravity_scale = 0.0
 script = ExtResource( 2 )
 

@@ -82,6 +82,11 @@ public class Player : Area2D
     
     public void OnPlayerBodyEntered(PhysicsBody2D body)
     {
+        if (body is EnemyPaco enemyPaco)
+        {
+            enemyPaco.OnEnemyPacoBodyEntered();
+        }
+        
         EmitSignal("Hit");
     }
 

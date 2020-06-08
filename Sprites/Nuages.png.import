@@ -2,11 +2,16 @@
 
 importer="texture"
 type="StreamTexture"
-valid=false
+path="res://.import/Nuages.png-6bc951b9dc522a901b70a2d722f95a54.stex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
 source_file="res://Sprites/Nuages.png"
+dest_files=[ "res://.import/Nuages.png-6bc951b9dc522a901b70a2d722f95a54.stex" ]
+
 [params]
 
 compress/mode=0

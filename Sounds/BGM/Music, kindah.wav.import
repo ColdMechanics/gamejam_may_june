@@ -2,11 +2,13 @@
 
 importer="wav"
 type="AudioStreamSample"
-valid=false
+path="res://.import/Music, kindah.wav-8dcf51f7c7f9165aa8b27f2c50ac3154.sample"
 
 [deps]
 
 source_file="res://Sounds/BGM/Music, kindah.wav"
+dest_files=[ "res://.import/Music, kindah.wav-8dcf51f7c7f9165aa8b27f2c50ac3154.sample" ]
+
 [params]
 
 force/8_bit=false

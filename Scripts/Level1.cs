@@ -19,44 +19,44 @@ public class Level1 : Node2D
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        _gameNode = GetNode<Node2D>("Game");
-        _menu = GetNode<Menu>("Menu");
-        
-        _isCancelPressed = false;
-        _enemyPacoSpawnCount = 0;
-        _enemyPacoSpawnTimer = GetNode<Timer>("Game/EnemyPacoSpawnTimer");
+        this._gameNode = GetNode<Node2D>("Game");
+        this._menu = GetNode<Menu>("Menu");
+
+        this._isCancelPressed = false;
+        this._enemyPacoSpawnCount = 0;
+        this._enemyPacoSpawnTimer = GetNode<Timer>("Game/EnemyPacoSpawnTimer");
     }
 
     public override void _Process(float delta)
     {
-        if (Input.IsActionPressed("ui_cancel") && !_isCancelPressed)
+        if (Input.IsActionPressed("ui_cancel") && !this._isCancelPressed)
         {
-            _isCancelPressed = true;
+            this._isCancelPressed = true;
             MenuToggle();
         }
         else if (!Input.IsActionPressed("ui_cancel"))
         {
-            _isCancelPressed = false;
+            this._isCancelPressed = false;
         }
     }
 
     public void OnEnemyPacoTimerTimeout()
     {
-        _enemyPacoSpawnTimer.Start();
+        this._enemyPacoSpawnTimer.Start();
     }
 
     public void OnEnemyPacoSpawnTimerTimeout()
     {
-        if (_enemyPacoSpawnCount < EnemyPacoPackCount)
+        if (this._enemyPacoSpawnCount < this.EnemyPacoPackCount)
         {
-            _enemyPacoSpawnCount++;
-            var enemyPacoInstance = (EnemyPacoPath) EnemyPaco.Instance();
-            _gameNode.AddChild(enemyPacoInstance);
+            this._enemyPacoSpawnCount++;
+            var enemyPacoInstance = (EnemyPacoPath) this.EnemyPaco.Instance();
+            this._gameNode.AddChild(enemyPacoInstance);
         }
         else
         {
-            _enemyPacoSpawnCount = 0;
-            _enemyPacoSpawnTimer.Stop();
+            this._enemyPacoSpawnCount = 0;
+            this._enemyPacoSpawnTimer.Stop();
         }
     }
 
@@ -68,14 +68,14 @@ public class Level1 : Node2D
         }
         else
         {
-            _menu.Show();
+            this._menu.Show();
             GetTree().Paused = true;
         }
     }
 
     public void OnMenuUnpause()
     {
-        _menu.Hide();
+        this._menu.Hide();
         GetTree().Paused = false;
     }
 

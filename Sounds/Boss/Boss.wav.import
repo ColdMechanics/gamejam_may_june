@@ -2,11 +2,13 @@
 
 importer="wav"
 type="AudioStreamSample"
-valid=false
+path="res://.import/Boss.wav-3dacde7e94098cb0d0ee490252b4af09.sample"
 
 [deps]
 
 source_file="res://Sounds/Boss/Boss.wav"
+dest_files=[ "res://.import/Boss.wav-3dacde7e94098cb0d0ee490252b4af09.sample" ]
+
 [params]
 
 force/8_bit=false

@@ -66,5 +66,8 @@
     <Compile Include="Scripts\Menu.cs" />
     <Compile Include="Scripts\Player.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="scenes" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -2,11 +2,13 @@
 
 importer="wav"
 type="AudioStreamSample"
-valid=false
+path="res://.import/Boss Mort.wav-b12720cecd007f90c62ac9aec82f74a6.sample"
 
 [deps]
 
 source_file="res://Sounds/Boss/Boss Mort.wav"
+dest_files=[ "res://.import/Boss Mort.wav-b12720cecd007f90c62ac9aec82f74a6.sample" ]
+
 [params]
 
 force/8_bit=false

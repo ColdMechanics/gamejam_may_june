@@ -2,11 +2,13 @@
 
 importer="wav"
 type="AudioStreamSample"
-valid=false
+path="res://.import/Laser.wav-0453b64d9cbc8c739777b035ddf0ee63.sample"
 
 [deps]
 
-source_file="res://Sounds/Enemi #3/Et pouf.wav"
+source_file="res://Sounds/Beamer/Laser.wav"
+dest_files=[ "res://.import/Laser.wav-0453b64d9cbc8c739777b035ddf0ee63.sample" ]
+
 [params]
 
 force/8_bit=false

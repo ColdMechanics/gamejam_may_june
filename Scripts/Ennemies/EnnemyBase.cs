@@ -1,5 +1,4 @@
 using Godot;
-using System;
 
 public abstract class EnnemyBase : RigidBody2D
 {
@@ -8,4 +7,7 @@ public abstract class EnnemyBase : RigidBody2D
     
     [Export]
     public int Speed = 200;
+
+    [Export]
+    public int ScoreValue = 100;
 }

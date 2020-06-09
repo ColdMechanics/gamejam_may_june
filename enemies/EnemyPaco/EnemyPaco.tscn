@@ -1,9 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://assets/EnemyPaco/ship_paco_tmp1.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/EnemyPaco/EnemyPaco.cs" type="Script" id=2]
 [ext_resource path="res://enemies/EnemyPaco/EnemyPacoProjectile.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/EnemyPaco/paco_poing.wav" type="AudioStream" id=4]
+[ext_resource path="res://assets/EnemyPaco/ship_paco_explosion_1.png" type="Texture" id=5]
+[ext_resource path="res://assets/EnemyPaco/ship_paco_explosion_2.png" type="Texture" id=6]
 [ext_resource path="res://assets/EnemyPaco/paco_bam.wav" type="AudioStream" id=7]
 
 [sub_resource type="SpriteFrames" id=1]
@@ -12,11 +14,14 @@ animations = [ {
 "loop": true,
 "name": "default",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 1 ), ExtResource( 5 ), ExtResource( 6 ) ],
+"loop": true,
+"name": "Death",
+"speed": 5.0
 } ]
 
-[node name="EnemyPaco" type="RigidBody2D" groups=[
-"Ennemy",
-]]
+[node name="EnemyPaco" type="RigidBody2D"]
 collision_layer = 2
 gravity_scale = 0.0
 contact_monitor = true
@@ -25,6 +30,7 @@ __meta__ = {
 "_edit_group_": true,
 "_edit_horizontal_guides_": [  ]
 }
+ContactDamage = 2
 Projectile = ExtResource( 3 )
 ProjectileMinDelay = 2.0
 ProjectileMaxDelay = 5.0

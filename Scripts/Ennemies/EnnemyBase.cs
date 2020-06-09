@@ -10,4 +10,15 @@ public abstract class EnnemyBase : RigidBody2D
 
     [Export]
     public int ScoreValue = 100;
+
+    [Export]
+    public int ContactDamage = 1;
+
+    public virtual void DisableCollisions()
+    {
+    }
+
+    public virtual void Die()
+    {
+    }
 }

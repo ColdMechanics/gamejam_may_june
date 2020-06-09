@@ -1,13 +1,10 @@
 using System;
 using Godot;
 
-public class EnemyPaco : RigidBody2D
+public class EnemyPaco : EnnemyBase
 {
     [Export]
     public PackedScene Projectile;
-    
-    [Export]
-    public int Speed = 200;
 
     [Export]
     public int ProjectileSpeed = 400;
@@ -32,6 +29,8 @@ public class EnemyPaco : RigidBody2D
     
     private Timer _shootTimer;
 
+    private CollisionPolygon2D _collisionPolygon;
+
     private bool _isDerp;
     
     private static readonly Random _random = new Random();
@@ -43,6 +42,7 @@ public class EnemyPaco : RigidBody2D
         _deathSound = GetNode<AudioStreamPlayer>("DeathSound");
         _shootSound = GetNode<AudioStreamPlayer>("ShootSound");
         _shootTimer = GetNode<Timer>("ShootTimer");
+        _collisionPolygon = GetNode<CollisionPolygon2D>("CollisionPolygon2D");
         SetShootTimerDuration();
 
         _isDerp = _random.Next(0, 100) < DerpChance;
@@ -62,7 +62,7 @@ public class EnemyPaco : RigidBody2D
         SetShootTimerDuration();
     }
 
-    public void OnEnemyPacoBodyEntered()
+    public override void Die()
     {
         _shootTimer.Stop();
         _animation.Play("Death");
@@ -75,6 +75,11 @@ public class EnemyPaco : RigidBody2D
         {
             QueueFree();
         }
+    }
+
+    public override void DisableCollisions()
+    {
+        _collisionPolygon.SetDeferred("disabled", true);
     }
 
     private void SetShootTimerDuration()

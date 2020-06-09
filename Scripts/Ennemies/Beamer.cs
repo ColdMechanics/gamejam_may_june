@@ -154,7 +154,7 @@ public class Beamer : EnnemyBase
         return !(collision is null) && collision.IsInGroup("Player");
     }
 
-    public async void Die()
+    public override async void Die()
     {
         this._isDead = true;
         this._fireSequenceToken?.Cancel();

@@ -82,13 +82,12 @@ public class Player : Area2D
     
     public void OnPlayerBodyEntered(PhysicsBody2D body)
     {
-        if (body is EnemyPaco enemyPaco)
+        if (body is EnnemyBase ennemy)
         {
-            enemyPaco.OnEnemyPacoBodyEntered();
-        }
-        else if (body is Beamer beamer)
-        {
-            beamer.Die();
+            Damage(ennemy.ContactDamage);
+            ennemy.DisableCollisions();
+            
+            ennemy.Die();
         }
         
         EmitSignal("Hit");

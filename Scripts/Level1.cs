@@ -6,9 +6,13 @@ public class Level1 : Node2D
 
     [Export] public int EnemyPacoPackCount = 5;
 
+    public static Player Player => _player;
+
     private Node2D _gameNode;
     
     private Menu _menu;
+
+    private static Player _player;
 
     private bool _isCancelPressed;
 
@@ -21,6 +25,8 @@ public class Level1 : Node2D
     {
         this._gameNode = GetNode<Node2D>("Game");
         this._menu = GetNode<Menu>("Menu");
+
+        _player = GetNode<Player>("Game/Player");
 
         this._isCancelPressed = false;
         this._enemyPacoSpawnCount = 0;

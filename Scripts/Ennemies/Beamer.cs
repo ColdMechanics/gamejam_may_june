@@ -17,7 +17,7 @@ public class Beamer : EnnemyBase
     private bool _isFirring = false;
     private bool _isMoving = true;
     private bool _isDead = false;
-    
+
     private CancellationTokenSource _fireSequenceToken;
 
     [Export(PropertyHint.Range, "0,6,.1")]
@@ -28,6 +28,9 @@ public class Beamer : EnnemyBase
 
     [Export(PropertyHint.Range, "100,10000,5")]
     public float BeamLength = 200f;
+
+    [Export]
+    public int BeamDamage = 2;
 
     public override void _Ready()
     {
@@ -66,11 +69,14 @@ public class Beamer : EnnemyBase
             Vector2 endPosition = new Vector2(this._laser.Points[0]);
             endPosition.x -= this._beamLength;
 
-            this._laser.SetPointPosition(1, endPosition);
+            if(this._laser.Points.Length > 1)
+                this._laser.SetPointPosition(1, endPosition);
 
             if (RayTouchPlayer(this._beamLength))
             {
-                // TODO damage the player
+                //Damage the player
+                Level1.Player.Damage(this.BeamDamage);
+
                 StopLaser();
             }
         }
@@ -92,11 +98,11 @@ public class Beamer : EnnemyBase
 
         // Stop moving
         this._isMoving = false;
-        
+
         this._laserSound.Play();
 
         this._animatedSprite.Animation = "Prepare";
-        
+
         this._fireSequenceToken?.Cancel();
         this._fireSequenceToken = new CancellationTokenSource();
 
@@ -123,8 +129,8 @@ public class Beamer : EnnemyBase
 
     private void StartLaser()
     {
-        // Play Firring sound
-
+        if(this._isFirring) return;
+        
         this._beamLength = 0;
         this._laser.AddPoint(this._muzzle.Position);
         this._isFirring = true;
@@ -132,13 +138,16 @@ public class Beamer : EnnemyBase
 
     private void StopLaser()
     {
-        // Play Firring sound
+        if(!this._isFirring) return;
+        
         this._isFirring = false;
         this._laser.RemovePoint(1);
     }
 
     private bool RayTouchPlayer(float length)
     {
+        length = Mathf.Floor(length);
+
         this._rayCast.Enabled = true;
         this._rayCast.Position = this._muzzle.Position;
 
@@ -150,6 +159,9 @@ public class Beamer : EnnemyBase
         if (!this._rayCast.IsColliding()) return false;
 
         Node collision = (Node) this._rayCast.GetCollider();
+
+        // To refresh the RayCast
+        this._rayCast.Enabled = false;
 
         return !(collision is null) && collision.IsInGroup("Player");
     }
@@ -166,7 +178,7 @@ public class Beamer : EnnemyBase
         await Task.Delay(TimeSpan.FromSeconds(this._deathSound.Stream.GetLength()), CancellationToken.None);
         QueueFree();
     }
-    
+
     public void OnVisibilityNotifier2DScreenExited()
     {
         QueueFree();

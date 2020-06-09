@@ -19,7 +19,7 @@ public class Player : Area2D
 
     [Export]
     public int BrokenSpriteHealth = 1;
-    
+
     private float _maxX;
     private float _maxY;
     private int _health;
@@ -79,17 +79,17 @@ public class Player : Area2D
             );
         }
     }
-    
+
     public void OnPlayerBodyEntered(PhysicsBody2D body)
     {
         if (body is EnnemyBase ennemy)
         {
             Damage(ennemy.ContactDamage);
             ennemy.DisableCollisions();
-            
+
             ennemy.Die();
         }
-        
+
         EmitSignal("Hit");
     }
 
@@ -98,10 +98,10 @@ public class Player : Area2D
         GD.Print("Shoot!");
     }
 
-    private void Damage(int damage)
+    public void Damage(int damage)
     {
         this._health -= damage;
-        
+
         if (this._health > this.BrokenSpriteHealth)
             this._animatedSprite.Animation = "Healthy";
         else if (this._health <= 0)

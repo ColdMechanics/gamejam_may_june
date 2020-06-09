@@ -86,6 +86,10 @@ public class Player : Area2D
         {
             enemyPaco.OnEnemyPacoBodyEntered();
         }
+        else if (body is Beamer beamer)
+        {
+            beamer.Die();
+        }
         
         EmitSignal("Hit");
     }

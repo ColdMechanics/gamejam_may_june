@@ -1,3 +1,6 @@
+using System;
+using System.Threading;
+using System.Threading.Tasks;
 using Godot;
 
 public class Beamer : EnnemyBase
@@ -6,13 +9,18 @@ public class Beamer : EnnemyBase
     private Position2D _muzzle;
     private AnimatedSprite _animatedSprite;
     private RayCast2D _rayCast;
+    private AudioStreamPlayer _laserSound;
+    private AudioStreamPlayer _deathSound;
 
     private float _beamLength = 0f;
     private bool _canFire = false;
     private bool _isFirring = false;
     private bool _isMoving = true;
+    private bool _isDead = false;
+    
+    private CancellationTokenSource _fireSequenceToken;
 
-    [Export(PropertyHint.Range, "0,6,.5")]
+    [Export(PropertyHint.Range, "0,6,.1")]
     public float BeamDuration = 2f;
 
     [Export(PropertyHint.Range, "0,6,.1")]
@@ -27,6 +35,8 @@ public class Beamer : EnnemyBase
         this._muzzle = GetNode<Position2D>("Position2D");
         this._animatedSprite = GetNode<AnimatedSprite>("AnimatedSprite");
         this._rayCast = GetNode<RayCast2D>("RayCast2D");
+        this._laserSound = GetNode<AudioStreamPlayer>("Laser");
+        this._deathSound = GetNode<AudioStreamPlayer>("Death");
 
         // remove fom the image the last point
         this._laser.RemovePoint(1);
@@ -82,20 +92,33 @@ public class Beamer : EnnemyBase
 
         // Stop moving
         this._isMoving = false;
+        
+        this._laserSound.Play();
 
         this._animatedSprite.Animation = "Prepare";
-        // Play sound
-        // Wait for charging
-        await ToSignal(GetTree().CreateTimer(this.BeamChargeTime), "timeout");
-        this._animatedSprite.Animation = "Fire";
-        StartLaser();
-        // Wait fire time
-        await ToSignal(GetTree().CreateTimer(this.BeamDuration), "timeout");
-        StopLaser();
-        this._animatedSprite.Animation = "Normal";
+        
+        this._fireSequenceToken?.Cancel();
+        this._fireSequenceToken = new CancellationTokenSource();
 
-        // Start moving
-        this._isMoving = true;
+        try
+        {
+            await Task.Delay(TimeSpan.FromSeconds(this.BeamChargeTime), this._fireSequenceToken.Token);
+            if (this._isDead) return;
+            this._animatedSprite.Animation = "Fire";
+            StartLaser();
+            // Wait fire time
+            await Task.Delay(TimeSpan.FromSeconds(this.BeamChargeTime), this._fireSequenceToken.Token);
+            if (this._isDead) return;
+            StopLaser();
+            this._animatedSprite.Animation = "Normal";
+
+            // Start moving
+            this._isMoving = true;
+        }
+        catch (OperationCanceledException e)
+        {
+            // ignore cancel token exception
+        }
     }
 
     private void StartLaser()
@@ -124,9 +147,6 @@ public class Beamer : EnnemyBase
 
         this._rayCast.CastTo = endPosition;
 
-        this._laser.SetPointPosition(0, this._muzzle.Position);
-        this._laser.SetPointPosition(1, endPosition);
-
         if (!this._rayCast.IsColliding()) return false;
 
         Node collision = (Node) this._rayCast.GetCollider();
@@ -134,6 +154,19 @@ public class Beamer : EnnemyBase
         return !(collision is null) && collision.IsInGroup("Player");
     }
 
+    public async void Die()
+    {
+        this._isDead = true;
+        this._fireSequenceToken?.Cancel();
+        this._laserSound.Stop();
+        StopLaser();
+        this._animatedSprite.Animation = "Dead";
+        this._deathSound.Play();
+        this._isMoving = false;
+        await Task.Delay(TimeSpan.FromSeconds(this._deathSound.Stream.GetLength()), CancellationToken.None);
+        QueueFree();
+    }
+    
     public void OnVisibilityNotifier2DScreenExited()
     {
         QueueFree();

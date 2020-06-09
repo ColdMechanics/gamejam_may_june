@@ -101,6 +101,13 @@ public class Player : Area2D
             enemy.Die();
         }
 
+        if (body is EnemyPacoProjectile pacoProjectile)
+        {
+            pacoProjectile.DisableCollisions();
+            Damage(pacoProjectile.Damage);
+            pacoProjectile.QueueFree();
+        }
+        
         EmitSignal("Hit");
     }
 

@@ -2,6 +2,9 @@ using Godot;
 
 public abstract class EnnemyBase : RigidBody2D
 {
+    [Export(PropertyHint.Range, "1,100,1")]
+    public int Life = 1;
+    
     [Export]
     public float SpawnRate = 0.1f;
     
@@ -19,6 +22,10 @@ public abstract class EnnemyBase : RigidBody2D
     }
 
     public virtual void Die()
+    {
+    }
+    
+    public virtual void Hit(int damage)
     {
     }
 }

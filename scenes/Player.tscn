@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scripts/Player.cs" type="Script" id=1]
 [ext_resource path="res://assets/Player/player_out.png" type="Texture" id=2]
 [ext_resource path="res://assets/Player/player_damage.png" type="Texture" id=3]
 [ext_resource path="res://assets/Player/player.png" type="Texture" id=4]
+[ext_resource path="res://scenes/PlayerBullet.tscn" type="PackedScene" id=5]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -33,6 +34,7 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true
 }
+PlayerBullet = ExtResource( 5 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
@@ -41,4 +43,13 @@ animation = "Healthy"
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 show_behind_parent = true
 polygon = PoolVector2Array( -66.6744, -42.2349, -56.9684, -36.4113, -28.518, -34.6946, -19.115, -28.97, 82.7982, -32.5289, 92.5042, -25.4111, 83.1217, 17.9424, 69.2098, 42.8545, 57.9742, 42.0443, -40.1447, 17.6189, -44.1603, 0.454403, -63.1156, -5.35205, -91.91, -35.1172 )
+
+[node name="Muzzle" type="Position2D" parent="."]
+position = Vector2( 90.5593, 2.44756 )
+
+[node name="ShootCooldown" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[node name="BulletContainer" type="Node" parent="."]
 [connection signal="body_entered" from="." to="." method="OnPlayerBodyEntered"]

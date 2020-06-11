@@ -65,6 +65,7 @@
     <Compile Include="Scripts\Level1.cs" />
     <Compile Include="Scripts\Menu.cs" />
     <Compile Include="Scripts\Player.cs" />
+    <Compile Include="Scripts\PlayerBullet.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="scenes" />

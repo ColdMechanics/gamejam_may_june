@@ -13,9 +13,6 @@ public class HUD : CanvasLayer
 	[Signal]
 	public delegate void StartGame();
 
-	[Signal]
-	public delegate void UpdateScore();
-	
 	public override void _Ready()
 	{
 		this._scoreLabel = GetNode<Label>("Score");
@@ -26,7 +23,7 @@ public class HUD : CanvasLayer
 		this._score = 0;
 	}
 
-	public void OnUpdateScore(uint points)
+	public void AddScore(uint points)
 	{
 		this._score += points;
 		

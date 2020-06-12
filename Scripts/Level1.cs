@@ -9,7 +9,8 @@ public class Level1 : Node2D
     [Export] public PackedScene Cloud;
 
     public static Player Player => _player;
-
+    public static HUD HUD => _hud;
+    
     private Node2D _gameNode;
     
     private Menu _menu;
@@ -17,6 +18,7 @@ public class Level1 : Node2D
     private Node2D _cloudRoot;
 
     private static Player _player;
+    private static HUD _hud;
 
     private bool _isCancelPressed;
 
@@ -32,6 +34,7 @@ public class Level1 : Node2D
         this._cloudRoot = GetNode<Node2D>("Game/CloudRoot");
 
         _player = GetNode<Player>("Game/Player");
+        _hud = GetNode<HUD>("Game/HUD");
 
         this._isCancelPressed = false;
         this._enemyPacoSpawnCount = 0;

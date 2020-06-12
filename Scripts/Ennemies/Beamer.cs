@@ -190,6 +190,8 @@ public class Beamer : EnnemyBase
     public override async void Die()
     {
         if(this._isDead) return;
+        
+        base.Die();
 
         CallDeferred("DisableCollision");
         this._isDead = true;

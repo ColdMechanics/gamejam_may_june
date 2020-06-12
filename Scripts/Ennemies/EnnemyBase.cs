@@ -12,7 +12,7 @@ public abstract class EnnemyBase : RigidBody2D
     public int Speed = 200;
 
     [Export]
-    public int ScoreValue = 100;
+    public uint ScoreValue = 100;
 
     [Export]
     public int ContactDamage = 1;
@@ -23,6 +23,7 @@ public abstract class EnnemyBase : RigidBody2D
 
     public virtual void Die()
     {
+        Level1.HUD.AddScore(this.ScoreValue);
     }
     
     public virtual void Hit(int damage)

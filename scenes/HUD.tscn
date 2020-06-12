@@ -29,4 +29,3 @@ margin_top = 22.9333
 margin_right = 471.039
 margin_bottom = 53.9333
 [connection signal="StartGame" from="." to="." method="OnStartGame"]
-[connection signal="UpdateScore" from="." to="." method="OnUpdateScore"]

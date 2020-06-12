@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Sprites/Nuages.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/Cloud.cs" type="Script" id=2]
+
+[node name="Cloud" type="Node2D"]
+script = ExtResource( 2 )
+Speed1 = 200
+Speed2 = 250
+
+[node name="CloudSprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+vframes = 4
+hframes = 4
+frame = 10
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="OnVisibilityNotifier2DScreenExited"]

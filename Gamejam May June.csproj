@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Scripts\Cloud.cs" />
     <Compile Include="Scripts\EnemyPaco\EnemyPaco.cs" />
     <Compile Include="Scripts\EnemyPaco\EnemyPacoPath.cs" />
     <Compile Include="Scripts\EnemyPaco\EnemyPacoProjectile.cs" />

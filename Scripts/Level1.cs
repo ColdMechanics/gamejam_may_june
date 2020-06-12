@@ -6,11 +6,15 @@ public class Level1 : Node2D
 
     [Export] public int EnemyPacoPackCount = 5;
 
+    [Export] public PackedScene Cloud;
+
     public static Player Player => _player;
 
     private Node2D _gameNode;
     
     private Menu _menu;
+
+    private Node2D _cloudRoot;
 
     private static Player _player;
 
@@ -25,6 +29,7 @@ public class Level1 : Node2D
     {
         this._gameNode = GetNode<Node2D>("Game");
         this._menu = GetNode<Menu>("Menu");
+        this._cloudRoot = GetNode<Node2D>("Game/CloudRoot");
 
         _player = GetNode<Player>("Game/Player");
 
@@ -64,6 +69,12 @@ public class Level1 : Node2D
             this._enemyPacoSpawnCount = 0;
             this._enemyPacoSpawnTimer.Stop();
         }
+    }
+
+    public void OnCloudTimerTimeout()
+    {
+        var cloudInstance = this.Cloud.Instance();
+        _cloudRoot.AddChild(cloudInstance);
     }
 
     private void MenuToggle()

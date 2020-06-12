@@ -171,7 +171,6 @@ public class Beamer : EnnemyBase
     private void DisableCollision()
     {
         GetNode<CollisionPolygon2D>("CollisionPolygon2D").Disabled = true;
-
     }
 
     private async void Blink()

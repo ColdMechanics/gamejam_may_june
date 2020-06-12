@@ -30,7 +30,6 @@ pause_mode = 1
 [node name="Player" parent="Game" instance=ExtResource( 1 )]
 position = Vector2( 323.2, 564.807 )
 Speed = 800
-PlayerBullet = null
 
 [node name="HUD" parent="Game" instance=ExtResource( 2 )]
 
@@ -43,7 +42,6 @@ wait_time = 0.5
 
 [node name="Beamer" parent="Game" instance=ExtResource( 6 )]
 position = Vector2( 2516.41, 547.667 )
-Life = 1
 
 [node name="CloudTimer" type="Timer" parent="Game"]
 wait_time = 2.0

@@ -27,5 +27,10 @@ public abstract class EnnemyBase : RigidBody2D
     
     public virtual void Hit(int damage)
     {
+        Life -= damage;
+        if (Life <= 0)
+        {
+            Die();
+        }
     }
 }

@@ -64,6 +64,7 @@ public class EnemyPaco : EnnemyBase
 
     public override void Die()
     {
+        DisableCollisions();
         _shootTimer.Stop();
         _animation.Play("Death");
         _deathSound.Play();

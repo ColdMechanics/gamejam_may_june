@@ -121,7 +121,7 @@ public class Beamer : EnnemyBase
             await Task.Delay(TimeSpan.FromSeconds(this.BeamChargeTime), this._fireSequenceToken.Token);
             if (this._isDead) return;
             StopLaser();
-            this._animatedSprite.Animation = "NormalColor";
+            this._animatedSprite.Animation = "Normal";
 
             // Start moving
             this._isMoving = true;

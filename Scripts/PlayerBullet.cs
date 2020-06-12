@@ -6,7 +6,7 @@ public class PlayerBullet : Area2D
     public float Speed = 1000;
 
     [Export]
-    public float Damage = 1;
+    public int Damage = 1;
 
     public override void _PhysicsProcess(float delta)
     {
@@ -24,5 +24,14 @@ public class PlayerBullet : Area2D
     public void OnVisibilityNotifier2DScreenExited()
     {
         QueueFree();
+    }
+
+    public void OnPlayerBulletBodyEntered(Node body)
+    {
+        if (body is EnnemyBase enemy)
+        {
+            enemy.Hit(Damage);
+            QueueFree();
+        }
     }
 }

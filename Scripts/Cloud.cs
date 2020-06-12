@@ -18,7 +18,7 @@ public class Cloud : Node2D
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        var spriteFrame = _random.Next(1, 17);
+        var spriteFrame = _random.Next(0, 16);
         _speed = _random.Next(2) == 1 ? Speed1 : Speed2;
         
         _cloudSprite = GetNode<Sprite>("CloudSprite");

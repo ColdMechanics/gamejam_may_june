@@ -6,14 +6,19 @@
 [node name="Boss" type="RigidBody2D" groups=[
 "Ennemy",
 ]]
+mass = 0.01
+gravity_scale = 0.0
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_group_": true
 }
+Speed = 700
 
 [node name="Sprite" type="Sprite" parent="."]
+rotation = 3.14159
 texture = ExtResource( 1 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 visible = false
+rotation = 3.14159
 polygon = PoolVector2Array( -102.727, 0.457851, -64.0074, -33.1839, -30.8132, -45.049, 8.96887, -47.1157, 46.8494, -65.5187, 94.4148, -61.7135, 47.5629, -37.6929, 76.6378, -15.2715, 76.6378, 9.93846, 49.2277, 35.5577, 104.879, 51.73, 54.6173, 66.9978, 2.85146, 47.4491, -34.467, 44.3039, -71.9684, 27.1874 )

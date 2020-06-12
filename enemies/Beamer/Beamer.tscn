@@ -58,6 +58,7 @@ __meta__ = {
 "_edit_group_": true
 }
 Life = 5
+ScoreValue = 300
 BeamDuration = 1.8
 BeamChargeTime = 0.9
 BeamLength = 3460.0

@@ -9,6 +9,9 @@ public class Cloud : Node2D
     [Export]
     public int Speed2 = 200;
     
+    [Export]
+    public int SpriteFrame = -1;
+    
     private Sprite _cloudSprite;
 
     private int _speed;
@@ -18,16 +21,19 @@ public class Cloud : Node2D
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        var spriteFrame = _random.Next(0, 16);
+        if (SpriteFrame == -1)
+        {
+            SpriteFrame = _random.Next(0, 16);
+
+            var initialX = GetViewportRect().Size.x;
+            var initialY = _random.Next(0, (int)GetViewportRect().Size.y);
+            GlobalPosition = new Vector2(initialX, initialY);
+        }
+        
         _speed = _random.Next(2) == 1 ? Speed1 : Speed2;
         
         _cloudSprite = GetNode<Sprite>("CloudSprite");
-        _cloudSprite.Frame = spriteFrame;
-
-        var initialX = GetViewportRect().Size.x;
-        var initialY = _random.Next(0, (int)GetViewportRect().Size.y);
-
-        GlobalPosition = new Vector2(initialX, initialY);
+        _cloudSprite.Frame = SpriteFrame;
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.

@@ -129,6 +129,8 @@ public class Player : Area2D
     {
         this._health -= damage;
 
+        Level1.HUD.SetHealth(((float) this._health) / this.MaxHealth);
+
         if (this._health > this.BrokenSpriteHealth)
             this._animatedSprite.Animation = "Healthy";
         else if (this._health <= 0)

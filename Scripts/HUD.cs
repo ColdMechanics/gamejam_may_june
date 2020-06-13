@@ -5,6 +5,8 @@ public class HUD : CanvasLayer
 {
 	private Label _scoreLabel;
 
+	private HealthBar _healthBar;
+
 	private uint _score = 0;
 	
 	[Export]
@@ -16,6 +18,9 @@ public class HUD : CanvasLayer
 	public override void _Ready()
 	{
 		this._scoreLabel = GetNode<Label>("Score");
+		this._healthBar = GetNode<HealthBar>("HealthBar");
+		
+		this._healthBar.SetValue(1);
 	}
 
 	public void OnStartGame()
@@ -28,5 +33,10 @@ public class HUD : CanvasLayer
 		this._score += points;
 		
 		this._scoreLabel.Text = this._score.ToString().PadLeft(this.ScoreLength, '0');
+	}
+
+	public void SetHealth(float value)
+	{
+		this._healthBar.SetValue(value);
 	}
 }

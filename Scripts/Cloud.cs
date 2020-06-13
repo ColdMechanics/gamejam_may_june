@@ -24,9 +24,9 @@ public class Cloud : Node2D
         _cloudSprite = GetNode<Sprite>("CloudSprite");
         _cloudSprite.Frame = spriteFrame;
 
-        var initialX = GetViewport().Size.x;
-        var initialY = _random.Next(0, (int)GetViewport().Size.y);
-        
+        var initialX = GetViewportRect().Size.x;
+        var initialY = _random.Next(0, (int)GetViewportRect().Size.y);
+
         GlobalPosition = new Vector2(initialX, initialY);
     }
 

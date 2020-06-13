@@ -30,7 +30,7 @@ public class Level1 : Node2D
     public override void _Ready()
     {
         this._gameNode = GetNode<Node2D>("Game");
-        this._menu = GetNode<Menu>("Menu");
+        this._menu = GetNode<Menu>("MenuCanvas/Menu");
         this._cloudRoot = GetNode<Node2D>("Game/CloudRoot");
 
         _player = GetNode<Player>("Game/Player");

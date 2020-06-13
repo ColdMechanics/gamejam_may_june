@@ -61,12 +61,14 @@
     <Compile Include="Scripts\Ennemies\Beamer.cs" />
     <Compile Include="Scripts\Ennemies\Boss.cs" />
     <Compile Include="Scripts\Ennemies\EnnemyBase.cs" />
+    <Compile Include="Scripts\GameOver.cs" />
     <Compile Include="Scripts\HUD.cs" />
     <Compile Include="Scripts\HUD\HealthBar.cs" />
     <Compile Include="Scripts\Level1.cs" />
     <Compile Include="Scripts\Menu.cs" />
     <Compile Include="Scripts\Player.cs" />
     <Compile Include="Scripts\PlayerBullet.cs" />
+    <Compile Include="Scripts\PlayerVariables.cs" />
     <Compile Include="Scripts\TitleScreen.cs" />
   </ItemGroup>
   <ItemGroup>

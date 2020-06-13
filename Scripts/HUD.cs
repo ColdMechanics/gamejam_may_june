@@ -7,7 +7,7 @@ public class HUD : CanvasLayer
 
 	private HealthBar _healthBar;
 
-	private uint _score = 0;
+	private PlayerVariables _playerVariables;
 	
 	[Export]
 	public int ScoreLength = 6;
@@ -21,18 +21,20 @@ public class HUD : CanvasLayer
 		this._healthBar = GetNode<HealthBar>("HealthBar");
 		
 		this._healthBar.SetValue(1);
+
+		this._playerVariables = GetNode<PlayerVariables>("/root/PlayerVariables");
 	}
 
 	public void OnStartGame()
 	{
-		this._score = 0;
+		this._playerVariables.Score = 0;
 	}
 
 	public void AddScore(uint points)
 	{
-		this._score += points;
+		this._playerVariables.Score += points;
 		
-		this._scoreLabel.Text = this._score.ToString().PadLeft(this.ScoreLength, '0');
+		this._scoreLabel.Text = this._playerVariables.Score.ToString().PadLeft(this.ScoreLength, '0');
 	}
 
 	public void SetHealth(float value)

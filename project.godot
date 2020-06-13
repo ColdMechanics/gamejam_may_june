@@ -18,6 +18,10 @@ _global_script_class_icons={
 config/name="Gamejam May June"
 run/main_scene="res://scenes/TitleScreen.tscn"
 
+[autoload]
+
+PlayerVariables="*res://Scripts/PlayerVariables.cs"
+
 [display]
 
 window/size/width=1920

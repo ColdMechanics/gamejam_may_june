@@ -134,7 +134,12 @@ public class Player : Area2D
         if (this._health > this.BrokenSpriteHealth)
             this._animatedSprite.Animation = "Healthy";
         else if (this._health <= 0)
+        {
             this._animatedSprite.Animation = "Dead";
+            
+            // TODO : Add a delay or something
+            GetTree().ChangeScene("res://scenes/GameOver.tscn");
+        }
         else
             this._animatedSprite.Animation = "Damage";
     }

@@ -1,0 +1,87 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Themes/Theme_UI.tres" type="Theme" id=1]
+[ext_resource path="res://Scripts/GameOver.cs" type="Script" id=2]
+[ext_resource path="res://scenes/level1.tscn" type="PackedScene" id=3]
+
+[node name="Node2D" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+LevelToLoad = ExtResource( 3 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.337255, 0.52549, 0.85098, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GameOverLabel" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -381.0
+margin_top = -240.0
+margin_right = 381.0
+margin_bottom = -162.0
+theme = ExtResource( 1 )
+text = "Game over! Final score"
+
+[node name="ScoreLabel" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -135.0
+margin_top = -140.0
+margin_right = 135.0
+margin_bottom = -62.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource( 1 )
+custom_colors/font_color = Color( 0.862745, 0.8, 0.113725, 1 )
+text = "000000"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RestartBtn" type="Button" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -480.0
+margin_top = 110.0
+margin_right = -80.0
+margin_bottom = 210.0
+theme = ExtResource( 1 )
+text = "Restart"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="QuitButton" type="Button" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 76.9091
+margin_top = 110.0
+margin_right = 476.909
+margin_bottom = 210.0
+theme = ExtResource( 1 )
+text = "Quit"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="RestartBtn" to="." method="OnRestartBtnPressed"]
+[connection signal="pressed" from="QuitButton" to="." method="OnQuitButtonPressed"]

@@ -6,13 +6,19 @@ public class Level1 : Node2D
 
     [Export] public int EnemyPacoPackCount = 5;
 
-    public static Player Player => _player;
+    [Export] public PackedScene Cloud;
 
+    public static Player Player => _player;
+    public static HUD HUD => _hud;
+    
     private Node2D _gameNode;
     
     private Menu _menu;
 
+    private Node2D _cloudRoot;
+
     private static Player _player;
+    private static HUD _hud;
 
     private bool _isCancelPressed;
 
@@ -24,9 +30,11 @@ public class Level1 : Node2D
     public override void _Ready()
     {
         this._gameNode = GetNode<Node2D>("Game");
-        this._menu = GetNode<Menu>("Menu");
+        this._menu = GetNode<Menu>("MenuCanvas/Menu");
+        this._cloudRoot = GetNode<Node2D>("Game/CloudRoot");
 
         _player = GetNode<Player>("Game/Player");
+        _hud = GetNode<HUD>("Game/HUD");
 
         this._isCancelPressed = false;
         this._enemyPacoSpawnCount = 0;
@@ -64,6 +72,12 @@ public class Level1 : Node2D
             this._enemyPacoSpawnCount = 0;
             this._enemyPacoSpawnTimer.Stop();
         }
+    }
+
+    public void OnCloudTimerTimeout()
+    {
+        var cloudInstance = this.Cloud.Instance();
+        _cloudRoot.AddChild(cloudInstance);
     }
 
     private void MenuToggle()

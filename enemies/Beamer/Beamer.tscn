@@ -13,12 +13,12 @@ region = Rect2( 156, 156, 156, 156 )
 [sub_resource type="AtlasTexture" id=2]
 flags = 4
 atlas = ExtResource( 1 )
-region = Rect2( 156, 0, 156, 156 )
+region = Rect2( 0, 156, 156, 156 )
 
 [sub_resource type="AtlasTexture" id=3]
 flags = 4
 atlas = ExtResource( 1 )
-region = Rect2( 0, 156, 156, 156 )
+region = Rect2( 156, 0, 156, 156 )
 
 [sub_resource type="AtlasTexture" id=4]
 flags = 4
@@ -34,12 +34,12 @@ animations = [ {
 }, {
 "frames": [ SubResource( 2 ) ],
 "loop": true,
-"name": "Prepare",
+"name": "Fire",
 "speed": 5.0
 }, {
 "frames": [ SubResource( 3 ) ],
 "loop": true,
-"name": "Fire",
+"name": "Prepare",
 "speed": 5.0
 }, {
 "frames": [ SubResource( 4 ) ],
@@ -57,24 +57,25 @@ script = ExtResource( 2 )
 __meta__ = {
 "_edit_group_": true
 }
+Life = 5
+ScoreValue = 300
 BeamDuration = 1.8
 BeamChargeTime = 0.9
 BeamLength = 3460.0
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-position = Vector2( 0, -0.59874 )
-scale = Vector2( 1.2, 1.2 )
 frames = SubResource( 5 )
 animation = "Normal"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PoolVector2Array( -80.3827, -3.81267, -0.290802, -42.0878, 79.9455, -27.5288, 91.2692, -14.2639, 36.9156, 34.5897, -30.0559, 35.2368 )
+show_behind_parent = true
+polygon = PoolVector2Array( -72.3774, -2.99687, -0.445313, -35.5194, 65.7476, -26.3366, 76.0782, -13.3276, 33.225, 29.5256, -27.2285, 29.143 )
 
 [node name="Position2D" type="Position2D" parent="."]
 position = Vector2( -62, 0 )
 
 [node name="Line2D" type="Line2D" parent="."]
-points = PoolVector2Array( -62, 0, -262, 0 )
+points = PoolVector2Array( -51, 0, -262, 0 )
 width = 30.0
 default_color = Color( 0.4, 0.972549, 1, 1 )
 end_cap_mode = 2
@@ -82,7 +83,7 @@ end_cap_mode = 2
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
-position = Vector2( -62, 0 )
+position = Vector2( -51, 0 )
 enabled = true
 cast_to = Vector2( -200, 0 )
 collide_with_areas = true

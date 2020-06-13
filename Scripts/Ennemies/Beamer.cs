@@ -5,6 +5,9 @@ using Godot;
 
 public class Beamer : EnnemyBase
 {
+    private static readonly Color PartialColor = new Color(1f, 1f, 1f, 0.5f);
+    private static readonly Color NormalColor = new Color(1f, 1f, 1f, 1f);
+    
     private Line2D _laser;
     private Position2D _muzzle;
     private AnimatedSprite _animatedSprite;
@@ -93,6 +96,8 @@ public class Beamer : EnnemyBase
     private async void Shoot()
     {
         if (!this._canFire) return;
+        
+        if(this._isDead) return;
 
         this._canFire = false;
 
@@ -146,13 +151,10 @@ public class Beamer : EnnemyBase
 
     private bool RayTouchPlayer(float length)
     {
-        length = Mathf.Floor(length);
-
         this._rayCast.Enabled = true;
         this._rayCast.Position = this._muzzle.Position;
 
-        Vector2 endPosition = new Vector2(this._muzzle.Position);
-        endPosition.x -= length;
+        Vector2 endPosition = new Vector2(this._muzzle.Position) {x = -length};
 
         this._rayCast.CastTo = endPosition;
 
@@ -166,8 +168,31 @@ public class Beamer : EnnemyBase
         return !(collision is null) && collision.IsInGroup("Player");
     }
 
+    private void DisableCollision()
+    {
+        GetNode<CollisionPolygon2D>("CollisionPolygon2D").Disabled = true;
+    }
+
+    private async void Blink()
+    {
+        for (int i = 0; i < 4; ++i)
+        {
+            if(this._isDead) return;
+            
+            this._animatedSprite.Modulate = PartialColor;
+            await ToSignal(GetTree(), "idle_frame");
+            this._animatedSprite.Modulate = NormalColor;
+            await ToSignal(GetTree(), "idle_frame");
+        }
+    }
+
     public override async void Die()
     {
+        if(this._isDead) return;
+        
+        base.Die();
+
+        CallDeferred("DisableCollision");
         this._isDead = true;
         this._fireSequenceToken?.Cancel();
         this._laserSound.Stop();
@@ -177,6 +202,17 @@ public class Beamer : EnnemyBase
         this._isMoving = false;
         await Task.Delay(TimeSpan.FromSeconds(this._deathSound.Stream.GetLength()), CancellationToken.None);
         QueueFree();
+    }
+
+    public override void Hit(int damage)
+    {
+        this.Life -= damage;
+
+        if (this.Life <= 0)
+            Die();
+        else
+            Blink();
+        
     }
 
     public void OnVisibilityNotifier2DScreenExited()

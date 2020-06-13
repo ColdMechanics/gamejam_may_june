@@ -1,0 +1,115 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Themes/Theme_UI.tres" type="Theme" id=1]
+[ext_resource path="res://Scripts/TitleScreen.cs" type="Script" id=2]
+[ext_resource path="res://scenes/level1.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/Cloud.tscn" type="PackedScene" id=4]
+
+[sub_resource type="DynamicFontData" id=1]
+font_path = "res://Themes/Fonts/Xolonium-Regular.ttf"
+
+[sub_resource type="DynamicFont" id=2]
+size = 64
+font_data = SubResource( 1 )
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+LevelToLoad = ExtResource( 3 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.337255, 0.52549, 0.85098, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Cloud" parent="CanvasLayer" instance=ExtResource( 4 )]
+position = Vector2( 323.877, 157.508 )
+Speed1 = 0
+Speed2 = 0
+SpriteFrame = 3
+
+[node name="Cloud2" parent="CanvasLayer" instance=ExtResource( 4 )]
+position = Vector2( 1154.45, 832.517 )
+Speed1 = 0
+Speed2 = 0
+SpriteFrame = 12
+
+[node name="Cloud3" parent="CanvasLayer" instance=ExtResource( 4 )]
+position = Vector2( 1397.48, 213.256 )
+Speed1 = 0
+Speed2 = 0
+SpriteFrame = 8
+
+[node name="Cloud4" parent="CanvasLayer" instance=ExtResource( 4 )]
+position = Vector2( 479.718, 883.398 )
+Speed1 = 0
+Speed2 = 0
+SpriteFrame = 9
+
+[node name="Cloud5" parent="CanvasLayer" instance=ExtResource( 4 )]
+position = Vector2( 164.043, 621.312 )
+Speed1 = 0
+Speed2 = 0
+SpriteFrame = 2
+
+[node name="Cloud6" parent="CanvasLayer" instance=ExtResource( 4 )]
+position = Vector2( 1597.37, 781.254 )
+Speed1 = 0
+Speed2 = 0
+SpriteFrame = 10
+
+[node name="NewGameButton" type="Button" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -200.0
+margin_top = -140.0
+margin_right = 200.0
+margin_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 2
+rect_pivot_offset = Vector2( 200, 50 )
+theme = ExtResource( 1 )
+text = "New Game"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="QuitButton" type="Button" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -200.0
+margin_top = 40.0
+margin_right = 200.0
+margin_bottom = 140.0
+rect_pivot_offset = Vector2( 200, 50 )
+custom_fonts/font = SubResource( 2 )
+text = "Quit"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -385.0
+margin_top = 150.0
+margin_right = 385.0
+margin_bottom = 228.0
+theme = ExtResource( 1 )
+text = "Generic Space Shooter"
+[connection signal="pressed" from="NewGameButton" to="." method="OnNewGameButtonPressed"]
+[connection signal="pressed" from="QuitButton" to="." method="OnQuitButtonPressed"]

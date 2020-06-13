@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/HUD.tscn" type="PackedScene" id=2]
@@ -7,12 +7,25 @@
 [ext_resource path="res://enemies/EnemyPaco/EnemyPacoPath.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Sounds/BGM/Music, kindah.ogg" type="AudioStream" id=6]
 [ext_resource path="res://scenes/Cloud.tscn" type="PackedScene" id=7]
+[ext_resource path="res://enemies/Beamer/Beamer.tscn" type="PackedScene" id=8]
+[ext_resource path="res://enemies/EnemyPaco/EnemyPaco.tscn" type="PackedScene" id=9]
+[ext_resource path="res://enemies/Boss/Boss.tscn" type="PackedScene" id=10]
+
+[sub_resource type="Curve2D" id=1]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 1974.38, 143.181, 0, 0, 0, 0, 1974.38, 1020.92 )
+}
 
 [node name="Level1" type="Node2D"]
 pause_mode = 2
 script = ExtResource( 4 )
 EnemyPaco = ExtResource( 5 )
 Cloud = ExtResource( 7 )
+Enemy1 = ExtResource( 8 )
+Enemy2 = ExtResource( 8 )
+Enemy3 = ExtResource( 9 )
+Enemy4 = ExtResource( 9 )
+Boss = ExtResource( 10 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = -1
@@ -47,6 +60,22 @@ wait_time = 0.5
 wait_time = 2.0
 autostart = true
 
+[node name="MonsterTimer" type="Timer" parent="Game"]
+wait_time = 2.0
+autostart = true
+
+[node name="BossTimer" type="Timer" parent="Game"]
+wait_time = 120.0
+one_shot = true
+autostart = true
+
+[node name="MonsterSpawner" type="Path2D" parent="Game"]
+curve = SubResource( 1 )
+
+[node name="MonsterSpawnerLocation" type="PathFollow2D" parent="Game/MonsterSpawner"]
+position = Vector2( 1974.38, 143.181 )
+rotation = 1.57086
+
 [node name="BGM" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
 volume_db = -10.0
@@ -67,5 +96,7 @@ margin_bottom = 150.0
 [connection signal="timeout" from="Game/EnemyPacoTimer" to="." method="OnEnemyPacoTimerTimeout"]
 [connection signal="timeout" from="Game/EnemyPacoSpawnTimer" to="." method="OnEnemyPacoSpawnTimerTimeout"]
 [connection signal="timeout" from="Game/CloudTimer" to="." method="OnCloudTimerTimeout"]
+[connection signal="timeout" from="Game/MonsterTimer" to="." method="OnMonsterTimerTimeout"]
+[connection signal="timeout" from="Game/BossTimer" to="." method="OnBossTimerTimeout"]
 [connection signal="Quit" from="MenuCanvas/Menu" to="." method="OnMenuQuit"]
 [connection signal="Unpause" from="MenuCanvas/Menu" to="." method="OnMenuUnpause"]

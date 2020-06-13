@@ -30,6 +30,7 @@ __meta__ = {
 "_edit_group_": true,
 "_edit_horizontal_guides_": [  ]
 }
+SpawnRate = 1.0
 ContactDamage = 2
 Projectile = ExtResource( 3 )
 ProjectileMinDelay = 2.0
